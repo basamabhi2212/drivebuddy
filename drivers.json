@@ -1,0 +1,50 @@
+[
+    {
+        "id": "DR001",
+        "name": "Rajesh Kumar",
+        "mobile": "9876543215",
+        "address": "123 Main Street, Bangalore, Karnataka 560001",
+        "license": "KA0120220001234",
+        "licenseIssueDate": "2022-01-15",
+        "licenseExpiryDate": "2027-01-15",
+        "aadharNumber": "1234-5678-9012",
+        "bankName": "State Bank of India",
+        "ifscCode": "SBIN0001234",
+        "bankDocument": "bank-doc-dr001.pdf",
+        "isEnabled": true,
+        "addedBy": "Admin User",
+        "addedAt": "2025-07-12T00:00:00.000Z"
+    },
+    {
+        "id": "DR002",
+        "name": "Suresh Patel",
+        "mobile": "9876543216",
+        "address": "456 Park Avenue, Mumbai, Maharashtra 400001",
+        "license": "MH0120220005678",
+        "licenseIssueDate": "2022-02-20",
+        "licenseExpiryDate": "2027-02-20",
+        "aadharNumber": "2345-6789-0123",
+        "bankName": "HDFC Bank",
+        "ifscCode": "HDFC0001235",
+        "bankDocument": "bank-doc-dr002.jpg",
+        "isEnabled": true,
+        "addedBy": "Executive User",
+        "addedAt": "2025-07-12T00:00:00.000Z"
+    },
+    {
+        "id": "DR003",
+        "name": "Amit Sharma",
+        "mobile": "9876543217",
+        "address": "789 Gandhi Road, Delhi, Delhi 110001",
+        "license": "DL0120220009012",
+        "licenseIssueDate": "2022-03-10",
+        "licenseExpiryDate": "2027-03-10",
+        "aadharNumber": "3456-7890-1234",
+        "bankName": "ICICI Bank",
+        "ifscCode": "ICIC0001236",
+        "bankDocument": "bank-doc-dr003.png",
+        "isEnabled": false,
+        "addedBy": "Manager User",
+        "addedAt": "2025-07-12T00:00:00.000Z"
+    }
+]
