@@ -1,0 +1,50 @@
+[
+    {
+        "id": "DVBDY001",
+        "customerName": "Priya Sharma",
+        "customerMobile": "9876543218",
+        "startDate": "2025-07-15T09:00:00",
+        "endDate": "2025-07-15T17:00:00",
+        "type": "in-station",
+        "routeType": "round-trip",
+        "pickupLocation": "Whitefield, Bangalore\nNear Phoenix MarketCity\nPin: 560066",
+        "dropLocation": "",
+        "vehicleType": "automatic",
+        "transmissionType": "sedan",
+        "status": "active",
+        "bookedBy": "Admin User",
+        "bookedAt": "2025-07-12T00:00:00.000Z"
+    },
+    {
+        "id": "DVBDY002",
+        "customerName": "Rajesh Kumar",
+        "customerMobile": "9876543219",
+        "startDate": "2025-07-16T08:00:00",
+        "endDate": "2025-07-17T20:00:00",
+        "type": "out-station",
+        "routeType": "one-way",
+        "pickupLocation": "Bangalore Airport\nKempegowda International Airport\nPin: 560300",
+        "dropLocation": "Mysore Palace\nSayyaji Rao Road, Agrahara\nMysore, Karnataka 570001",
+        "vehicleType": "manual",
+        "transmissionType": "suv",
+        "status": "in-progress",
+        "bookedBy": "Executive User",
+        "bookedAt": "2025-07-12T00:00:00.000Z"
+    },
+    {
+        "id": "DVBDY003",
+        "customerName": "Anita Patel",
+        "customerMobile": "9876543220",
+        "startDate": "2025-07-10T10:00:00",
+        "endDate": "2025-07-10T18:00:00",
+        "type": "in-station",
+        "routeType": "round-trip",
+        "pickupLocation": "HSR Layout, Bangalore\nSector 1, Near BDA Complex\nPin: 560102",
+        "dropLocation": "",
+        "vehicleType": "automatic",
+        "transmissionType": "luxury",
+        "status": "completed",
+        "bookedBy": "Manager User",
+        "bookedAt": "2025-07-09T00:00:00.000Z"
+    }
+]

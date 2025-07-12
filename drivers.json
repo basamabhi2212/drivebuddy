@@ -1,0 +1,29 @@
+[
+    {
+        "id": "DR001",
+        "name": "Rajesh Kumar",
+        "mobile": "9876543215",
+        "address": "123 Main Street, Bangalore, Karnataka 560001",
+        "license": "KA0120220001234",
+        "addedBy": "Admin User",
+        "addedAt": "2025-07-12T00:00:00.000Z"
+    },
+    {
+        "id": "DR002",
+        "name": "Suresh Patel",
+        "mobile": "9876543216",
+        "address": "456 Park Avenue, Mumbai, Maharashtra 400001",
+        "license": "MH0120220005678",
+        "addedBy": "Executive User",
+        "addedAt": "2025-07-12T00:00:00.000Z"
+    },
+    {
+        "id": "DR003",
+        "name": "Amit Sharma",
+        "mobile": "9876543217",
+        "address": "789 Gandhi Road, Delhi, Delhi 110001",
+        "license": "DL0120220009012",
+        "addedBy": "Manager User",
+        "addedAt": "2025-07-12T00:00:00.000Z"
+    }
+]

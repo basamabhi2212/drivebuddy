@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Fare Calculator - DriveBuddy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .calculator-section {
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        input[type="date"],
+        input[type="time"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="date"]:focus,
+        input[type="time"]:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .calculate-btn:active {
+            transform: translateY(0);
+        }
+
+        .fare-result {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            display: none;
+        }
+
+        .fare-result h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .fare-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .fare-item:last-child {
+            border-bottom: none;
+        }
+
+        .fare-item.total {
+            border-top: 2px solid #3498db;
+            margin-top: 15px;
+            padding-top: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .fare-item.total span {
+            color: #27ae60;
+        }
+
+        .pricing-info {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        .pricing-info h4 {
+            color: #1976d2;
+            margin-bottom: 15px;
+        }
+
+        .pricing-info ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pricing-info li {
+            padding: 8px 0;
+            color: #333;
+            border-bottom: 1px solid #bbdefb;
+        }
+
+        .pricing-info li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-info li i {
+            color: #2196f3;
+            margin-right: 10px;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .calculator-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="back-btn" onclick="window.history.back()">
+        <i class="fas fa-arrow-left"></i> Back
+    </button>
+
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-calculator"></i> Trip Fare Calculator</h1>
+            <p>Calculate accurate trip costs with our pricing structure</p>
+        </div>
+
+        <div class="calculator-section">
+            <form id="fareCalculatorForm">
+                <div class="form-group">
+                    <label for="tripDate">
+                        <i class="fas fa-calendar-alt"></i> Trip Date
+                    </label>
+                    <input type="date" id="tripDate" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="startTime">
+                            <i class="fas fa-clock"></i> Start Time
+                        </label>
+                        <input type="time" id="startTime" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="endTime">
+                            <i class="fas fa-clock"></i> End Time
+                        </label>
+                        <input type="time" id="endTime" required>
+                    </div>
+                </div>
+
+                <button type="button" class="calculate-btn" onclick="calculateFare()">
+                    <i class="fas fa-calculator"></i> Calculate Fare
+                </button>
+            </form>
+
+            <div id="fareResult" class="fare-result">
+                <h3><i class="fas fa-receipt"></i> Fare Breakdown</h3>
+                <div class="fare-item">
+                    <span>Total Hours:</span>
+                    <span id="totalHours">0</span>
+                </div>
+                <div class="fare-item">
+                    <span>Daytime Hours (7 AM - 10 PM):</span>
+                    <span id="daytimeHours">0</span>
+                </div>
+                <div class="fare-item">
+                    <span>Nighttime Hours (10 PM - 7 AM):</span>
+                    <span id="nighttimeHours">0</span>
+                </div>
+                <div class="fare-item">
+                    <span>Driver Amount:</span>
+                    <span id="driverAmount">₹0</span>
+                </div>
+                <div class="fare-item">
+                    <span>Company Amount:</span>
+                    <span id="companyAmount">₹0</span>
+                </div>
+                <div class="fare-item">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">₹0</span>
+                </div>
+                <div class="fare-item">
+                    <span>GST (18%):</span>
+                    <span id="gstAmount">₹0</span>
+                </div>
+                <div class="fare-item total">
+                    <span><strong>Total Amount:</strong></span>
+                    <span id="totalAmount"><strong>₹0</strong></span>
+                </div>
+            </div>
+
+            <div class="pricing-info">
+                <h4><i class="fas fa-info-circle"></i> Pricing Structure</h4>
+                <ul>
+                    <li>
+                        <i class="fas fa-sun"></i>
+                        <strong>Daytime (7 AM - 10 PM):</strong> ₹86/hr for driver + ₹14/hr for company
+                    </li>
+                    <li>
+                        <i class="fas fa-moon"></i>
+                        <strong>Nighttime (10 PM - 7 AM):</strong> ₹96/hr for driver + ₹14/hr for company
+                    </li>
+                    <li>
+                        <i class="fas fa-percentage"></i>
+                        <strong>GST:</strong> 18% on total amount
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set default date to today
+        document.getElementById('tripDate').valueAsDate = new Date();
+
+        function calculateFare() {
+            const startTime = document.getElementById('startTime').value;
+            const endTime = document.getElementById('endTime').value;
+            const tripDate = document.getElementById('tripDate').value;
+            
+            if (!startTime || !endTime || !tripDate) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            // Parse times
+            const startDateTime = new Date(`${tripDate}T${startTime}`);
+            const endDateTime = new Date(`${tripDate}T${endTime}`);
+            
+            // Handle overnight trips
+            if (endDateTime < startDateTime) {
+                endDateTime.setDate(endDateTime.getDate() + 1);
+            }
+            
+            const totalMilliseconds = endDateTime - startDateTime;
+            const totalHours = totalMilliseconds / (1000 * 60 * 60);
+            
+            // Calculate daytime and nighttime hours
+            let daytimeHours = 0;
+            let nighttimeHours = 0;
+            
+            const currentTime = new Date(startDateTime);
+            const interval = 15; // 15-minute intervals for precise calculation
+            
+            while (currentTime < endDateTime) {
+                const hour = currentTime.getHours();
+                const minutesToAdd = Math.min(interval, (endDateTime - currentTime) / (1000 * 60));
+                
+                if (hour >= 7 && hour < 22) {
+                    daytimeHours += minutesToAdd / 60;
+                } else {
+                    nighttimeHours += minutesToAdd / 60;
+                }
+                
+                currentTime.setMinutes(currentTime.getMinutes() + minutesToAdd);
+            }
+            
+            // Pricing structure
+            const daytimeDriverRate = 86;
+            const nighttimeDriverRate = 96;
+            const companyRate = 14;
+            const gstRate = 0.18;
+            
+            // Calculate amounts
+            const driverAmount = (daytimeHours * daytimeDriverRate) + (nighttimeHours * nighttimeDriverRate);
+            const companyAmount = totalHours * companyRate;
+            const subtotal = driverAmount + companyAmount;
+            const gstAmount = subtotal * gstRate;
+            const totalAmount = subtotal + gstAmount;
+            
+            // Display results
+            document.getElementById('totalHours').textContent = totalHours.toFixed(2);
+            document.getElementById('daytimeHours').textContent = daytimeHours.toFixed(2);
+            document.getElementById('nighttimeHours').textContent = nighttimeHours.toFixed(2);
+            document.getElementById('driverAmount').textContent = `₹${driverAmount.toFixed(2)}`;
+            document.getElementById('companyAmount').textContent = `₹${companyAmount.toFixed(2)}`;
+            document.getElementById('subtotal').textContent = `₹${subtotal.toFixed(2)}`;
+            document.getElementById('gstAmount').textContent = `₹${gstAmount.toFixed(2)}`;
+            document.getElementById('totalAmount').textContent = `₹${totalAmount.toFixed(2)}`;
+            
+            document.getElementById('fareResult').style.display = 'block';
+            
+            // Smooth scroll to results
+            document.getElementById('fareResult').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Allow Enter key to calculate
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculateFare();
+            }
+        });
+    </script>
+</body>
+</html>
