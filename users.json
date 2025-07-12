@@ -1,9 +1,9 @@
 [
     {
         "id": "USR001",
-        "name": "Admin User",
-        "mobile": "9876543210",
-        "password": "admin123",
+        "name": "Abhishek",
+        "mobile": "9493936084",
+        "password": "Today12#",
         "role": "admin",
         "addedBy": "System",
         "addedAt": "2025-07-12T00:00:00.000Z"
@@ -19,9 +19,9 @@
     },
     {
         "id": "USR003",
-        "name": "Manager User",
-        "mobile": "9876543212",
-        "password": "manager123",
+        "name": "Sharavan",
+        "mobile": 9704633817",
+        "password": "12345",
         "role": "manager",
         "addedBy": "Admin User",
         "addedAt": "2025-07-12T00:00:00.000Z"
